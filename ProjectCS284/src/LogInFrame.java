@@ -40,6 +40,7 @@ public class LogInFrame extends AllSubject {
 		System.out.println("HelloWorld");
 		System.out.println("EiEI");
 		System.out.println("Pete");
+		System.out.println("ONg");
 		user = new ArrayList<>();
 		pass = new ArrayList<>();
 		sub = new ArrayList<>();
