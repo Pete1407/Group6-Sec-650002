@@ -50,12 +50,9 @@ public class LogInFrame extends AllSubject {
 			while (sn.hasNextLine()) {
 
 				StringTokenizer st = new StringTokenizer(sn.nextLine(), " ");
-				// System.out.println(st.nextToken());
-				// System.out.println(st.nextToken());
 				user.add(st.nextToken());
 				pass.add(st.nextToken());
 				sub.add(st.nextToken());
-				// System.out.println(user.size() +" "+pass.size());
 
 			}
 
@@ -151,34 +148,6 @@ public class LogInFrame extends AllSubject {
 
 			}
 		});
-
-		/************************************************************************/
-		/*
-		 * String data[][] = new String[8][10];
-		 * 
-		 * for (int i = 0; i < data.length; i++) { data[i][0] = "5909650656"; }
-		 * 
-		 * 
-		 * for (int i = 0; i < data.length; i++) { for (int j = 1; j <
-		 * data[0].length-1; j++) { data[i][j] = "0"; }
-		 * 
-		 * 
-		 * }
-		 * 
-		 * String header[] = new String[data[0].length-1]; header[0] =
-		 * "ID Student"; for (int i = 1; i < header.length; i++) { header[i] =
-		 * "Coloumn"+(i+1); }
-		 * 
-		 * // Table JTable table = new JTable(data,header);
-		 * table.setRowHeight(20);
-		 * table.getColumnModel().getColumn(0).setPreferredWidth(200);
-		 * table.setPreferredSize(new Dimension(900, 200)); JScrollPane
-		 * scrollPane = new JScrollPane(table); JPanel pa = new JPanel();
-		 * scrollPane.setPreferredSize(new Dimension(600, 200));
-		 * //pa.setLayout(new FlowLayout()); pa.add(scrollPane); add(pa);
-		 * //getContentPane().setBounds(300, 300, 100, 100);
-		 */
-		/************************************************************************/
 
 		this.setTitle("Log In");
 		this.pack();

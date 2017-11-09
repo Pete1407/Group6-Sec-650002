@@ -128,7 +128,7 @@ public class ScoreForm extends AllSubject {
 							if(j==0)
 								data[i-1][0] = getSubject(name).getData()[i][0].split(" ")[0];
 							else {
-								data[i][j] = "-";
+								data[i-1][j] = "-";
 							}
 							
 						}

@@ -5,7 +5,7 @@ joy aom4321 CS284 student.txt
 BondSupanat bbb ALL student.txt
 pete pete ALL student.txt
 yao yao1234 CS111 student.txt
-pete p CS213 student.txt
+pete p CS213 student5.txt
 ong ong CS211 student.txt
 ppp ppp CS355 student3.txt
 on off TU101 student4.txt
