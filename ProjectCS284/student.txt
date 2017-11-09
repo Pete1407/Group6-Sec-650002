@@ -1,7 +1,7 @@
 IDStudent hello world 123 
 5909650011 10 20 5 
 5909650029 - 10 10 
-5909650052 - - - 
+5909650052 10 - - 
 5909650144 - 10 - 
 5909650185 - - - 
 5909650193 10 - 10 
@@ -47,5 +47,5 @@ IDStudent hello world 123
 5909650870 - - - 
 5909650896 - - - 
 5909650906 - - - 
-null null null null 
+nul null null null 
 null null null null 
