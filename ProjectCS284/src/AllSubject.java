@@ -73,7 +73,7 @@ public class AllSubject extends JFrame{
 	}
 	
 	public Subject getSubject(String name) {
-		
+		System.out.println(getIndex(name));
 		return arrSub.get(getIndex(name));
 	}
 	

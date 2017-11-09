@@ -26,6 +26,7 @@ public class Course extends AllSubject {
 	String[] header ;
 	String[][] data2;
 	int[] fullSc;
+	String grade;
 	public Course(String name) {
 		for (int i = 0; i < getSizeArray(); i++) {
 			System.out.println(i);
@@ -49,33 +50,61 @@ public class Course extends AllSubject {
 			//System.out.println("AA");
 			int a=0;
 			System.out.println(data[0][0]);
-			StringTokenizer st = new StringTokenizer(data[0][0], " ");
+			StringTokenizer st = new StringTokenizer(data[1][0], " ");
 			while(st.hasMoreTokens()) {
 				st.nextToken();
 				a++;
 			}
 			
-			System.out.println(a);
+			System.out.println(a+"AAAA");
+			System.out.println(data[1][0]);
 			data2 = new String[data.length][a];
-		
+			int b =1;
 			header = new String[a];
-			if(data[0][0].split(" ")[0].equals("IDStudent")) {
-				//int b =0;
+			if(data[0][0].split(" ")[0].equals("IDStudent") || a==1) {
+				grade = "aaa";
+				 b =1;
 				String[] da = data[0][0].split(" ");
+				//System.out.println(da.length);
+				for (int j = 0; j < da.length; j++) {
+					header[j] = da[j];
+				}
+				System.out.println(data2.length+"BBBB");
+				for (int i = 1 ; i < data2.length; i++) {
+					
+					String[] da1 = data[i][0].split(" ");
+					
+					for (int j = 0; j < a; j++) {
+						//System.out.println(da1[j]);
+						data2[i-1][j] = da1[j];
+					}
+				}
+		
+		
+			}else if(data[1][0].split(" ")[0].equals("IDStudent")){
+				System.out.println("AAAAAAA");
+				grade = data[0][0]+"\n";
+				//System.out.println(data[0][0]);
+
+				b =1;
+				String[] da = data[1][0].split(" ");
 				System.out.println(da.length);
 				for (int j = 0; j < da.length; j++) {
 					header[j] = da[j];
 				}
-		
-		
-			}
-			int b = 0;
-			for (int i = 1; i < data2.length; i++) {
-				String[] da1 = data[i][0].split(" ");
-				for (int j = 0; j < a; j++) {
-					data2[i-1][j] = da1[j];
+				System.out.println(data2.length+" "+a);
+				for (int i = 2 ; i < data2.length; i++) {
+					String[] da1 = data[i][0].split(" ");
+					for (int j = 0; j < a; j++) {
+						data2[i-2][j] = da1[j];
+						
+					}
 				}
+				
 			}
+			
+			//System.out.println(b);
+			
 			
 			header[0] = "IDStudent";
 			table = new JTable(data2, header);
@@ -120,8 +149,15 @@ public class Course extends AllSubject {
 				try {
 					File f =getSubject(name).getFile();
 					fileW = new FileWriter(f);
-					fileW.write(head);
-					fileW.write(ans);
+					
+					if(grade.equals("aaa")) {
+						fileW.write(head);
+						fileW.write(ans);
+					}else {
+						fileW.write(grade);
+						fileW.write(head);
+						fileW.write(ans);
+					}
 					fileW.close();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -149,6 +185,6 @@ public class Course extends AllSubject {
 	}
 
 	public static void main(String[] args) {
-		new Course("CS211");
+		new Course("TU101");
 	}
 }

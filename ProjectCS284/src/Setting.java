@@ -11,7 +11,7 @@ import javax.swing.JTabbedPane;
 
 public class Setting extends AllSubject{
 	public Setting(String name) {
-		String[][] data = getSubject(name).getData();
+		//String[][] data = getSubject(name).getData();
 	 	//System.out.println(getSubject(name).getData()[0].length);
 	 	
 		JComboBox<String> box = new JComboBox<>();
@@ -32,7 +32,7 @@ public class Setting extends AllSubject{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(box.getSelectedItem().equals("Grade Criterion")) {
-					new GradeFrame();
+					new GradeFrame(name);
 				}else {
 					new ScoreForm(name);
 				}
