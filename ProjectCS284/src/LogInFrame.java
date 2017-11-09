@@ -37,6 +37,7 @@ public class LogInFrame extends AllSubject {
 	private Scanner sn;
 
 	public LogInFrame() {
+		System.out.println("HelloWorld");
 		user = new ArrayList<>();
 		pass = new ArrayList<>();
 		sub = new ArrayList<>();
