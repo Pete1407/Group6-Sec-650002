@@ -24,94 +24,106 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 public class Course extends AllSubject {
-	String[] header ;
+	String[] header;
 	String[][] data2;
 	int[] fullSc;
 	String grade;
+
 	public Course(String name) {
 		for (int i = 0; i < getSizeArray(); i++) {
 			System.out.println(i);
 		}
-		data = null ;
-		header =null;
-		JTable table;
+		data = null;
+		header = null;
+		JTable table = null;
 		try {
-		 data2 = ScoreForm.data;
-		header = ScoreForm.nameForm;
-		fullSc = ScoreForm.fullScore;
-		String[] a = new String[fullSc.length];
-		System.out.println(header.length+" "+fullSc.length);
-		for (int i = 0; i < fullSc.length; i++) {
-			header[i+1] = fullSc[i]+"@"+header[i+1];
-		}
-	
-		table = new JTable(data2, header);
-		}catch (NullPointerException e) {
+			data2 = ScoreForm.data;
+			header = ScoreForm.nameForm;
+			fullSc = ScoreForm.fullScore;
+			String[] a = new String[fullSc.length];
+			System.out.println(header.length + " " + fullSc.length);
+			for (int i = 0; i < fullSc.length; i++) {
+				header[i + 1] = fullSc[i] + "@" + header[i + 1];
+			}
+
+			table = new JTable(data2, header);
+		} catch (NullPointerException e) {
 			data = getSubject(name).getData();
-			//System.out.println("AA");
-			int a=0;
+			// System.out.println("AA");
+			int a = 0;
 			System.out.println(data[0][0]);
 			StringTokenizer st = new StringTokenizer(data[1][0], " ");
-			while(st.hasMoreTokens()) {
+			while (st.hasMoreTokens()) {
 				st.nextToken();
 				a++;
 			}
-			
-			System.out.println(a+"AAAA");
+
+			System.out.println(a + "AAAA");
 			System.out.println(data[1][0]);
 			data2 = new String[data.length][a];
-			int b =1;
+			int b = 1;
 			header = new String[a];
-			if(data[0][0].split(" ")[0].equals("IDStudent") || a==1) {
+			boolean check = false;
+			if (data[0][0].split(" ")[0].equals("IDStudent") || a == 1) {
 				grade = "aaa";
-				 b =1;
+				b = 1;
 				String[] da = data[0][0].split(" ");
-				//System.out.println(da.length);
+				// System.out.println(da.length);
 				for (int j = 0; j < da.length; j++) {
 					header[j] = da[j];
 				}
-				System.out.println(data2.length+"BBBB");
-				for (int i = 1 ; i < data2.length; i++) {
-					
+				System.out.println(data2.length + "BBBB");
+				for (int i = 1; i < data2.length; i++) {
+
 					String[] da1 = data[i][0].split(" ");
-					
+
 					for (int j = 0; j < a; j++) {
-						//System.out.println(da1[j]);
-						data2[i-1][j] = da1[j];
+						// System.out.println(da1[j]);
+						data2[i - 1][j] = da1[j];
 					}
 				}
-		
-		
-			}else if(data[1][0].split(" ")[0].equals("IDStudent")){
-				System.out.println("AAAAAAA");
-				grade = data[0][0]+"\n";
-				//System.out.println(data[0][0]);
 
-				b =1;
+			} else if (data[1][0].split(" ")[0].equals("IDStudent")) {
+				
+				//System.out.println("AAAAAAA");
+				grade = data[0][0] + "\n";
+				// System.out.println(data[0][0]);
+
+				b = 1;
 				String[] da = data[1][0].split(" ");
 				System.out.println(da.length);
 				for (int j = 0; j < da.length; j++) {
 					header[j] = da[j];
 				}
-				System.out.println(data2.length+" "+a);
-				for (int i = 2 ; i < data2.length; i++) {
+				System.out.println(data2.length + " " + a);
+				
+				try {
+				for (int i = 2; i < data2.length; i++) {
 					String[] da1 = data[i][0].split(" ");
 					for (int j = 0; j < a; j++) {
-						data2[i-2][j] = da1[j];
-						
+						data2[i - 2][j] = da1[j];
+
 					}
 				}
 				
+				}catch (ArrayIndexOutOfBoundsException e2) {
+					JOptionPane.showMessageDialog(null, "sent grade.");
+					check = true;
+				}
 			}
-			
-			//System.out.println(b);
-			
-			
+
+			// System.out.println(b);
+
 			header[0] = "IDStudent";
 			table = new JTable(data2, header);
 			
+			if(check) {
+				table.setEnabled(false);
+			}
+			
+			
+
 		}
-	
 
 		JScrollPane scrollPane = new JScrollPane(table);
 		JPanel pa = new JPanel();
@@ -120,43 +132,43 @@ public class Course extends AllSubject {
 		pa.add(scrollPane);
 		add(pa);
 		// getContentPane().setBounds(300, 300, 100, 100);
-		JPanel p1= new JPanel();
+		JPanel p1 = new JPanel();
 		JButton ok = new JButton("Save");
 		JButton cancel = new JButton("Back");
 		JButton submit = new JButton("Submit");
 		p1.add(ok);
 		p1.add(cancel);
 		p1.add(submit);
-		add(p1,BorderLayout.SOUTH);
+		add(p1, BorderLayout.SOUTH);
 		ok.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String ans="";
+				String ans = "";
 				System.out.println(data2[0][0]);
-				for (int i = 0; i < data2.length-1; i++) {
+				for (int i = 0; i < data2.length - 1; i++) {
 					for (int j = 0; j < data2[0].length; j++) {
-						//System.out.println(data[i][j]);
-						ans += data2[i][j]+" ";
+						// System.out.println(data[i][j]);
+						ans += data2[i][j] + " ";
 					}
 					ans += "\n";
 				}
-				//System.out.println(ans);
-				String head ="";
-				
+				// System.out.println(ans);
+				String head = "";
+
 				for (int i = 0; i < header.length; i++) {
-					head+= header[i]+" ";
+					head += header[i] + " ";
 				}
-				head+="\n";
+				head += "\n";
 				FileWriter fileW;
 				try {
-					File f =getSubject(name).getFile();
+					File f = getSubject(name).getFile();
 					fileW = new FileWriter(f);
-					
-					if(grade.equals("aaa")) {
+
+					if (grade.equals("aaa")) {
 						fileW.write(head);
 						fileW.write(ans);
-					}else {
+					} else {
 						fileW.write(grade);
 						fileW.write(head);
 						fileW.write(ans);
@@ -164,62 +176,72 @@ public class Course extends AllSubject {
 					fileW.close();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
-					//e1.printStackTrace();
+					// e1.printStackTrace();
 				}
-				
+
 			}
 		});
-		
+
 		cancel.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new LogInFrame();
 				dispose();
-				
-				
+
 			}
 		});
-		
+
 		submit.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				File file = getSubject(name).getFile();
 				try {
 					Scanner sn = new Scanner(file);
-					int i=0;
-					while(sn.hasNextLine()) {
-						//System.out.println(i);
+					int i = 0;
+					boolean check = true;
+					while (sn.hasNextLine()) {
+						// System.out.println(i);
 						String line = sn.nextLine();
-						if(i>1) {
-							//System.out.println(line);
+						if (i > 1) {
+							// System.out.println(line);
 							String[] sp = line.split(" ");
+
 							for (int j = 1; j < sp.length; j++) {
-								if(sp[j].equals("-")) {
-									JOptionPane.showMessageDialog(null, "Input All Score");
-									new Course(name);
-									dispose();
+								//System.out.println(sp[j]);
+								if (sp[j].equals("-")) {
+									//JOptionPane.showMessageDialog(null, "Input All Score");
+									System.out.println("AAASSS");
+									check = false;
+									break;
+									
 								}
 							}
-						
+							if(check == false) {
+								JOptionPane.showMessageDialog(null, "Input All Score");
+								break;
+								
+							}
 							
-							
+
 						}
 						i++;
 					}
 					
-					
-				} catch (FileNotFoundException e1) {
+					if (check) {
+						new Calculate(file);
+						dispose();
+					}
+
+				} catch (FileNotFoundException | NumberFormatException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					
 				}
-				
-				
+
 			}
 		});
-		
-		
+
 		this.setTitle("Log In");
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

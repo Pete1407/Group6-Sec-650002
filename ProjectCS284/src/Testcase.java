@@ -7,19 +7,21 @@ import org.junit.Test;
 public class Testcase {
 
 	LogInFrame lf;
+
 	@Before
-    public void setUp(){
-    	lf=new LogInFrame();
-    }
+	public void setUp() {
+		lf = new LogInFrame();
+	}
+
 	@After
 	public void tearDown() {
-		lf=null;
-	
+		lf = null;
+
 	}
+
 	@Test
-	public void testString(){
-		assertNull( "Password or username wrong",lf.data);
-		
-		
+	public void testString() {
+		assertNull("Password or username wrong", lf.data);
+
 	}
 }
