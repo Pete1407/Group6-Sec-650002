@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -122,8 +123,10 @@ public class Course extends AllSubject {
 		JPanel p1= new JPanel();
 		JButton ok = new JButton("Save");
 		JButton cancel = new JButton("Back");
+		JButton submit = new JButton("Submit");
 		p1.add(ok);
 		p1.add(cancel);
+		p1.add(submit);
 		add(p1,BorderLayout.SOUTH);
 		ok.addActionListener(new ActionListener() {
 			
@@ -177,6 +180,45 @@ public class Course extends AllSubject {
 				
 			}
 		});
+		
+		submit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				File file = getSubject(name).getFile();
+				try {
+					Scanner sn = new Scanner(file);
+					int i=0;
+					while(sn.hasNextLine()) {
+						//System.out.println(i);
+						String line = sn.nextLine();
+						if(i>1) {
+							//System.out.println(line);
+							String[] sp = line.split(" ");
+							for (int j = 1; j < sp.length; j++) {
+								if(sp[j].equals("-")) {
+									JOptionPane.showMessageDialog(null, "Input All Score");
+									new Course(name);
+									dispose();
+								}
+							}
+						
+							
+							
+						}
+						i++;
+					}
+					
+					
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+			}
+		});
+		
 		
 		this.setTitle("Log In");
 		this.pack();
