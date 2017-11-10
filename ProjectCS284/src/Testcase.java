@@ -20,7 +20,6 @@ public class Testcase {
 	public void testString(){
 		assertNull( "Password or username wrong",lf.data);
 		
-	
 		
 	}
 }
