@@ -28,14 +28,18 @@ public class Course extends AllSubject {
 	String[][] data2;
 	int[] fullSc;
 	String grade;
-
+	JButton ok,cancel,submit;
+	JTable table;
 	public Course(String name) {
+		ok = new JButton("Save");
+		cancel = new JButton("Back");
+		submit = new JButton("Submit");
 		for (int i = 0; i < getSizeArray(); i++) {
 			System.out.println(i);
 		}
 		data = null;
 		header = null;
-		JTable table = null;
+		
 		try {
 			data2 = ScoreForm.data;
 			header = ScoreForm.nameForm;
@@ -58,8 +62,8 @@ public class Course extends AllSubject {
 				a++;
 			}
 
-			System.out.println(a + "AAAA");
-			System.out.println(data[1][0]);
+			//System.out.println(a + "AAAA");
+			//System.out.println(data[1][0]);
 			data2 = new String[data.length][a];
 			int b = 1;
 			header = new String[a];
@@ -109,9 +113,35 @@ public class Course extends AllSubject {
 				}catch (ArrayIndexOutOfBoundsException e2) {
 					JOptionPane.showMessageDialog(null, "sent grade.");
 					check = true;
+					ok.setEnabled(false);
+					submit.setText("Cancel");
+					//cancel.setEnabled(false);
+					
+					
+					int i=0;
+					System.out.println(data.length+"ADECBY");
+					while(true){
+						if(data[i][0].equals("Net score & Grade")){
+							
+							break;
+						}
+						i++;
+					}
+					
+					data2 = new String[data.length-i+1][3];
+					for (int j = i+1; j < data.length; j++) {
+						for (int j2 = 0; j2 < 3; j2++) {
+							System.out.println("aaa");
+							data2[j-(i+1)][j2] = data[j][0].split(" ")[j2];
+						}
+					}
+
+					header = new String[3];
+					header[1] = "Net Score";
+					header[2] = "Grade";
 				}
 			}
-
+			
 			// System.out.println(b);
 
 			header[0] = "IDStudent";
@@ -133,9 +163,8 @@ public class Course extends AllSubject {
 		add(pa);
 		// getContentPane().setBounds(300, 300, 100, 100);
 		JPanel p1 = new JPanel();
-		JButton ok = new JButton("Save");
-		JButton cancel = new JButton("Back");
-		JButton submit = new JButton("Submit");
+		
+		
 		p1.add(ok);
 		p1.add(cancel);
 		p1.add(submit);
@@ -144,6 +173,7 @@ public class Course extends AllSubject {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(e.getActionCommand().equals("Save")){
 				String ans = "";
 				System.out.println(data2[0][0]);
 				for (int i = 0; i < data2.length - 1; i++) {
@@ -178,7 +208,9 @@ public class Course extends AllSubject {
 					// TODO Auto-generated catch block
 					// e1.printStackTrace();
 				}
-
+				}else{
+					
+				}
 			}
 		});
 
@@ -186,9 +218,10 @@ public class Course extends AllSubject {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new LogInFrame();
-				dispose();
-
+				
+					new LogInFrame();
+					dispose();
+			
 			}
 		});
 
@@ -196,6 +229,7 @@ public class Course extends AllSubject {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(e.getActionCommand().equals("Submit")){
 				File file = getSubject(name).getFile();
 				try {
 					Scanner sn = new Scanner(file);
@@ -233,12 +267,16 @@ public class Course extends AllSubject {
 						new Calculate(file);
 						dispose();
 					}
+				
 
 				} catch (FileNotFoundException | NumberFormatException e1) {
 				
 					
 				}
-
+				}else{
+					dispose();
+					System.exit(0);
+				}
 			}
 		});
 
@@ -249,6 +287,6 @@ public class Course extends AllSubject {
 	}
 
 	public static void main(String[] args) {
-		new Course("TU101");
+		new Course("CS211");
 	}
 }
