@@ -36,12 +36,12 @@ public class Subject {
 	}
 
 	public String[][] getData() {
-		System.out.println(data[0].length+name+"A");
+		//System.out.println(data[0].length+name+"A");
 		return data;
 	}
 
 	public void setData(String[][] data) {
-		System.out.println(data[0].length+name+"B");
+		//System.out.println(data[0].length+name+"B");
 		this.data = data;
 	}
 

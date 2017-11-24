@@ -121,7 +121,7 @@ public class EmailForm extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new Course(name);
-				
+				dispose();
 			}
 		});
 		p3.add(send);

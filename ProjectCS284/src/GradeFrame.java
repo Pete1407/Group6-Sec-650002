@@ -26,7 +26,7 @@ public class GradeFrame extends AllSubject {
 	private JTextField aa, bbplus, bb, ccplus, cc, ddplus, dd;
 	private JButton ok, cancel;
 
-	public GradeFrame(String name) {
+	public GradeFrame(String name,String aS,String bpS,String bS,String cpS,String cS,String dpS,String dS,boolean win) {
 		this.setLayout(new BorderLayout());
 		JPanel havana = new JPanel();
 		havana.setLayout(new BorderLayout());
@@ -61,6 +61,14 @@ public class GradeFrame extends AllSubject {
 		cc = new JTextField(7);
 		ddplus = new JTextField(7);
 		dd = new JTextField(7);
+		
+		aa.setText(aS);
+		bbplus.setText(bpS);
+		bb.setText(bS);
+		ccplus.setText(cpS);
+		cc.setText(cS);
+		ddplus.setText(dpS);
+		dd.setText(dS);
 
 		ok = new JButton("OK");
 		cancel = new JButton("Back");
@@ -78,13 +86,13 @@ public class GradeFrame extends AllSubject {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					int a = Integer.valueOf(aa.getText());
-					int bplus = Integer.valueOf(bbplus.getText());
-					int b = Integer.valueOf(bb.getText());
-					int cplus = Integer.valueOf(ccplus.getText());
-					int c = Integer.valueOf(cc.getText());
-					int dplus = Integer.valueOf(ddplus.getText());
-					int d = Integer.valueOf(dd.getText());
+					double a = Double.valueOf(aa.getText());
+					double bplus = Double.valueOf(bbplus.getText());
+					double b = Double.valueOf(bb.getText());
+					double cplus = Double.valueOf(ccplus.getText());
+					double c = Double.valueOf(cc.getText());
+					double dplus = Double.valueOf(ddplus.getText());
+					double d = Double.valueOf(dd.getText());
 
 					if (a < bplus || bplus < b || b < cplus || cplus < c || c < dplus || dplus < d) {
 						JOptionPane.showMessageDialog(null, "Input Error!!");
@@ -98,7 +106,7 @@ public class GradeFrame extends AllSubject {
 						message += "C : " + (cplus - 1) + " - " + c + "\n";
 						message += "D+: " + (c - 1) + " - " + dplus + "\n";
 						message += "D : " + (dplus - 1) + " - " + d + "\n";
-						message += "F : " + (d - 1) + " - 0\n";
+						message += "F : " + String.format("%.2f",(d - 1)) + " - 0\n";
 
 						JOptionPane.showMessageDialog(null, message);
 
@@ -139,8 +147,16 @@ public class GradeFrame extends AllSubject {
 							fw.write(pa);
 							fw.close();
 							
-							dispose();
-							System.exit(0);
+							
+							if(win) {
+								new LogInFrame();
+								dispose();
+							}else {
+								new Calculate(getSubject(name).getFile(),name);
+								dispose();
+							}
+							
+							//System.exit(0);
 						
 							
 						} catch (IOException e1) {
@@ -154,8 +170,7 @@ public class GradeFrame extends AllSubject {
 					
 			
 				} catch (FileNotFoundException | NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					// e1.printStackTrace();
+					e1.printStackTrace();
 				}
 
 			}
@@ -171,11 +186,14 @@ public class GradeFrame extends AllSubject {
 
 	this.add(p1,BorderLayout.NORTH);this.add(blue,BorderLayout.CENTER);this.add(p9,BorderLayout.SOUTH);
 
-	this.setTitle("Grade");this.setSize(300,300);this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);this.setVisible(true);
+	this.setTitle("Grade");
+	this.setSize(300,300);
+	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	this.setVisible(true);
 
 	}
 
 	public static void main(String[] args) {
-		new GradeFrame("CS211");
+		new GradeFrame("CS213","","","","","","","",true);
 	}
 }

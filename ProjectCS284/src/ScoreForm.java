@@ -110,32 +110,33 @@ public class ScoreForm extends AllSubject {
 					le.setForeground(Color.RED);
 				}
 				else {
+					System.out.println(totalscore[0].getText()+"AAAAAAAAA");
 				try {
 					for (int i = 1; i < a+1; i++) {
 						nameForm[i] = nametest[i-1].getText();
 						fullScore[i-1] = Integer.parseInt(totalscore[i-1].getText());
-						//System.out.println(nameForm[i]+" "+fullScore[i]);
+						nameForm[i] = fullScore[i-1]+"@"+nameForm[i];
+						//System.out.println(nameForm[i]+" "+totalscore[i-1].getText());
 					}
 					
 					getSubject(name).setNameForm(nameForm);
 					getSubject(name).setPointForm(fullScore);
-					for (int j = 0; j < getSubject(name).getNameForm().length; j++) {
-						System.out.println(getSubject(name).getNameForm()[j]);
-					}
-					data = new String[getSubject(name).getData().length][getSubject(name).getData()[0].length+a-1];
-					for (int i = 1; i < data.length; i++) {
+				
+					data = new String[getSubject(name).getData().length][a+1];
+					for (int i = 0; i < data.length; i++) {
 						for (int j = 0; j < data[0].length; j++) {
 							if(j==0)
-								data[i-1][0] = getSubject(name).getData()[i][0].split(" ")[0];
+								data[i][0] = getSubject(name).getData()[i][0].split(" ")[0];
 							else {
-								data[i-1][j] = "-";
+								data[i][j] = "-";
 							}
-							
+							System.out.println(data[i][j]);
 						}
 					}
-					
-					getSubject(name).setData(data);
-					System.out.println(getSubject(name).getData()[0].length+" "+name);
+					new Course(name);
+					dispose();
+					//getSubject(name).setData(data);
+					//System.out.println(getSubject(name).getData()[0].length+" "+name);
 					
 					new Course(name);
 					dispose();
@@ -172,11 +173,9 @@ public class ScoreForm extends AllSubject {
 		this.setVisible(true);
 	}
 
-	public String[][] getData() {
-		return data;
-	}
+	
 	
 	public static void main(String[] args) {
-		ScoreForm c = new ScoreForm("CS211");
+		new ScoreForm("CS213");
 	}
 }

@@ -32,7 +32,7 @@ public class Setting extends AllSubject{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(box.getSelectedItem().equals("Grade Criterion")) {
-					new GradeFrame(name);
+					new GradeFrame(name,"","","","","","","",true);
 				}else {
 					new ScoreForm(name);
 				}
