@@ -25,7 +25,7 @@ import javax.swing.border.TitledBorder;
 
 public class Course extends AllSubject {
 	String[] header;
-	String[][] data2;
+	static String[][] data2;
 	int[] fullSc;
 	String grade;
 	JButton ok,cancel,submit;
@@ -62,8 +62,6 @@ public class Course extends AllSubject {
 				a++;
 			}
 
-			//System.out.println(a + "AAAA");
-			//System.out.println(data[1][0]);
 			data2 = new String[data.length][a];
 			int b = 1;
 			header = new String[a];
@@ -76,7 +74,7 @@ public class Course extends AllSubject {
 				for (int j = 0; j < da.length; j++) {
 					header[j] = da[j];
 				}
-				System.out.println(data2.length + "BBBB");
+				//System.out.println(data2.length + "BBBB");
 				for (int i = 1; i < data2.length; i++) {
 
 					String[] da1 = data[i][0].split(" ");
@@ -114,15 +112,14 @@ public class Course extends AllSubject {
 					JOptionPane.showMessageDialog(null, "sent grade.");
 					check = true;
 					ok.setEnabled(false);
-					submit.setText("Cancel");
+					submit.setText("Email");
 					//cancel.setEnabled(false);
 					
 					
 					int i=0;
-					System.out.println(data.length+"ADECBY");
+					//System.out.println(data.length+"ADECBY");
 					while(true){
-						if(data[i][0].equals("Net score & Grade")){
-							
+						if(data[i][0].equals("Net score & Grade")){	
 							break;
 						}
 						i++;
@@ -131,7 +128,7 @@ public class Course extends AllSubject {
 					data2 = new String[data.length-i+1][3];
 					for (int j = i+1; j < data.length; j++) {
 						for (int j2 = 0; j2 < 3; j2++) {
-							System.out.println("aaa");
+						
 							data2[j-(i+1)][j2] = data[j][0].split(" ")[j2];
 						}
 					}
@@ -179,8 +176,12 @@ public class Course extends AllSubject {
 				for (int i = 0; i < data2.length - 1; i++) {
 					for (int j = 0; j < data2[0].length; j++) {
 						// System.out.println(data[i][j]);
-						ans += data2[i][j] + " ";
+						if(data2[i][j]==null) {
+							
+						}else
+							ans += data2[i][j] + " ";
 					}
+					
 					ans += "\n";
 				}
 				// System.out.println(ans);
@@ -246,7 +247,7 @@ public class Course extends AllSubject {
 								//System.out.println(sp[j]);
 								if (sp[j].equals("-")) {
 									//JOptionPane.showMessageDialog(null, "Input All Score");
-									System.out.println("AAASSS");
+								//	System.out.println("AAASSS");
 									check = false;
 									break;
 									
@@ -274,13 +275,16 @@ public class Course extends AllSubject {
 					
 				}
 				}else{
+					new EmailForm(name);
 					dispose();
-					System.exit(0);
+					//System.exit(0);
 				}
 			}
 		});
+		
+		
 
-		this.setTitle("Log In");
+		this.setTitle("Course");
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);

@@ -176,6 +176,6 @@ public class GradeFrame extends AllSubject {
 	}
 
 	public static void main(String[] args) {
-		new GradeFrame("TU101");
+		new GradeFrame("CS211");
 	}
 }
