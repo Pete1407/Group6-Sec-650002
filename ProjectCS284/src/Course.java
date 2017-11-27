@@ -33,6 +33,7 @@ public class Course extends AllSubject {
 	JButton ok, cancel, submit;
 	JTable table;
 	JRadioButton curve;
+	boolean check = true;
 
 	public Course(String name) {
 		curve = new JRadioButton("Curve");
@@ -244,7 +245,7 @@ public class Course extends AllSubject {
 					try {
 						Scanner sn = new Scanner(file);
 						int i = 0;
-						boolean check = true;
+						
 						while (sn.hasNextLine()) {
 							// System.out.println(i);
 							String line = sn.nextLine();
@@ -324,7 +325,6 @@ public class Course extends AllSubject {
 			}
 			if (sum != 0) {
 				d.add(sum);
-				System.out.println(d.get(i));
 			}
 			sum = 0;
 

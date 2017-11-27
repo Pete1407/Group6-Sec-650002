@@ -12,45 +12,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendEmail {
-
+	String mail;
 	public SendEmail(String id , String ma , String name){
-		
-		
-		
-		String mail="";
-		File file = new File("classlist60.txt");
-		try {
-			String[] maa=null;
-			boolean boo = true;
-			Scanner sn = new Scanner(file);
+		FindEmail fe = new FindEmail();
+			mail= fe.getEmail(id);
 			
-			while(sn.hasNextLine()) {
-				maa =  sn.nextLine().split(" ");
-				
-				if(id.equals(maa[0])) {
-					mail = maa[1];
-					boo = false;
-				
-					break;
-				}
-			}		
-			
-			
-			
-			if(boo) {
-				//label.setText("Not Found Email!");
-			}else {
-				
-				
-			}
-			
-		} catch (FileNotFoundException e1) {
-			
-			e1.printStackTrace();
-		}
-		
-		
-		//mail = "pete.pittawas@gmail.com";
+	
 		
 			final String username = "ilovecs284@gmail.com";
 	        final String password = "send1234";
@@ -71,7 +38,8 @@ public class SendEmail {
 	        try {
 				Message message = new MimeMessage(session);
 				message.setFrom(new InternetAddress(username));
-				message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("supanatbond@gmail.com"));
+				//message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(mail)); 
+				message.setRecipients(Message.RecipientType.TO,InternetAddress.parse("pete.pittawas@gmail.com"));
 				message.setSubject(id+" : Scores & Grade of course "+name);
 				message.setText(ma);
 
@@ -83,5 +51,9 @@ public class SendEmail {
 	            throw new RuntimeException(e);
 	        }
 	}
+	
+	
+	
+
 
 }

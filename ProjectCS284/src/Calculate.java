@@ -94,7 +94,7 @@ public class Calculate {
 				//String.format("%.2f", sum);
 				send += "\nGrade : "+g+"\n";
 				sumStr += String.format("%.2f", sum) + " " + g + "\n";
-				//new SendEmail(sp[0], send, name);
+				new SendEmail(sp[0], send, name);
 				System.out.println(send);
 				send = "";
 				sum = 0;
